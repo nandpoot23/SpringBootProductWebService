@@ -1,0 +1,9 @@
+**************************************************************************************************************************
+
+http://www.journaldev.com/1069/threadpoolexecutor-java-thread-pool-example-executorservice
+http://howtodoinjava.com/best-practices/java-executor-framework-tutorial-and-best-practices/
+http://tutorials.jenkov.com/java-util-concurrent/executorservice.html
+http://mrbool.com/working-with-java-executor-framework-in-multithreaded-application/27560
+https://dzone.com/articles/the-executor-framework
+
+**************************************************************************************************************************

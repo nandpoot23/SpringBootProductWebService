@@ -1,0 +1,134 @@
+buildscript {
+
+	ext {
+		springBootVersion = '1.4.2.RELEASE'
+		springCloudVersion = '1.0.2.RELEASE'
+        springFrameworkVersion = '4.3.3.RELEASE'
+        
+	}
+	
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+	
+}
+
+apply plugin: 'sonar-runner'
+apply plugin: 'jacoco'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '1.0.1'
+
+jar {
+	baseName = 'springboot-product-webservice'
+	version = version
+}
+
+group = 'springboot-product-webservice'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+springBoot {
+    mainClass = "com.biscuit.product.service.rest.app.SpringBootProductWebServiceApplication"
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile("org.springframework.boot:spring-boot-starter-ws") 
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+	
+	//swagger
+	compile("io.springfox:springfox-swagger2:2.0.2")
+    compile("io.springfox:springfox-swagger-ui:2.0.2")
+	
+	compile("wsdl4j:wsdl4j:1.6.1")
+	compile("org.apache.axis:axis:1.4")
+    compile group: 'com.google.guava', name: 'guava', version: '18.0'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2.1'
+    compile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+    compile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    compile group: 'org.apache.ws.security', name: 'wss4j', version: '1.6.18'
+	
+	compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.5'
+	
+	//validation aspect
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.2'
+    compile group: 'commons-validator', name: 'commons-validator', version: '1.3.1'
+    
+    //reflection
+    compile group: 'org.reflections', name: 'reflections', version: '0.9.10'
+    
+	//aop
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.4.2.RELEASE'
+	
+	//spring actuator
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    
+    // caching
+    compile group: 'org.springframework', name: 'spring-context-support', version: '4.2.5.RELEASE'
+    compile group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.2.2'
+    compile 'com.github.ben-manes.caffeine:guava:2.2.2'
+    
+    // rabbit mq
+    compile group: 'org.springframework.amqp', name: 'spring-amqp', version: '1.4.0.RELEASE'
+    compile group: 'org.springframework.amqp', name: 'spring-rabbit', version: '1.4.0.RELEASE'
+    
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.2.4'
+    
+	//mysql
+	runtime('mysql:mysql-connector-java')
+	
+	//powermock
+	testCompile('org.powermock:powermock-mockito-release-full:1.6.2')
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task wrapper(type: Wrapper) {
+   gradleVersion = '2.14.1'
+}
+
+bootRun {
+    systemProperties = System.properties
+}
+
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
+//sonar
+sonarRunner {
+    sonarProperties {
+        property "sonar.projectKey", "com.biscuit:springboot-product-webservice"
+        property "sonar.projectName", "springboot-product-webservice"
+        //property "sonar.host.url", "http://10.22.88.84:9000"
+        property "sonar.host.url", "http://localhost:9000"
+        //property "sonar.login", "admin"
+        //property "sonar.password", "admin"
+        //property "sonar.jdbc.url", "jdbc:mysql://10.22.88.83:3406/sonar"
+        //property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "sonar"
+        property "sonar.jdbc.password", "sonar"
+        property "sonar.jacoco.reportPath", "$buildDir/jacoco/jacocoTest.exec"
+       property "sonar.exclusions", "**/types/**,**/dao/**,**/connector/data/**,**/config/**,**/DBQueryConstants.java"
+    }
+}

@@ -1,0 +1,27 @@
+**************************************************************************************************************************
+
+/Envelope/Body/Fault/detail/serviceFault/messages/message/code/text()
+
+**************************************************************************************************************************
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header/>
+   <SOAP-ENV:Body>
+      <SOAP-ENV:Fault>
+         <faultcode>SOAP-ENV:Client</faultcode>
+         <faultstring xml:lang="en">An error occurred. Please check the detail section. [ASPECTS: ()]</faultstring>
+         <detail>
+            <serviceFault>
+               <messages>
+                  <message>
+                     <code>PRODUCT-31556</code>
+                     <text>System Error : Product not exist.</text>
+                  </message>
+               </messages>
+            </serviceFault>
+         </detail>
+      </SOAP-ENV:Fault>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+**************************************************************************************************************************

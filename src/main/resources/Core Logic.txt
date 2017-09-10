@@ -1,0 +1,14 @@
+**************************************************************************************************************************
+
+http://stackoverflow.com/questions/11875446/read-data-from-text-file-and-sum-numbers
+http://stackoverflow.com/questions/9084040/reading-selective-column-data-from-a-text-file-into-a-list-in-java
+http://stackoverflow.com/questions/29109259/read-string-of-numbers-from-text-file-and-add-them-together
+https://www.daniweb.com/programming/software-development/threads/127653/read-a-column-of-text-from-a-file-in-java
+https://coderanch.com/t/561180/java/read-text-file-perform-operation
+
+**************************************************************************************************************************
+
+http://qa.geeksforgeeks.org/10617/item-search-in-text-file-with-java
+http://www.geeksforgeeks.org/fundamentals-of-algorithms/
+
+**************************************************************************************************************************

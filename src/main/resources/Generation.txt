@@ -1,0 +1,9 @@
+**************************************************************************************************************************
+
+Command to generate wsdl to java files by using binding.xjb:-
+
+http://www.thoughts-on-java.org/generate-your-jaxb-classes-in-second/
+http://www.mojohaus.org/jaxb2-maven-plugin/Documentation/v2.2/example_xjc_basic.html
+https://jax-ws-commons.java.net/jaxws-maven-plugin/examples/using-binding-files.html
+
+**************************************************************************************************************************

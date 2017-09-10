@@ -1,0 +1,137 @@
+spring:
+  cloud:
+    config:
+      username: ${gsp.config.server.username}
+      password: ${gsp.config.server.password}
+      label: ${spring.cloud.config.label}
+      uri: ${spring.cloud.config.uri}
+      enabled: false
+      failFast: true
+    bus:
+      enabled: false
+      amqp:
+        enabled: false
+
+
+---
+gsp:
+  security:
+    token:
+      redis:
+        cache: false
+---
+spring:
+  profiles: gsp-dev
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+---
+spring:
+  profiles: gsp-qa
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-int
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-stg-g1
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-stg-g2
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+---
+spring:
+  profiles: gsp-stg-g4
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+---
+spring:
+  profiles: gsp-prd-g1
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-prd-g2
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-prd-g3
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+---
+spring:
+  profiles: gsp-prd-r2
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true
+
+---
+spring:
+  profiles: gsp-prd-r3
+  cloud:
+    config:
+      enabled: true
+    bus:
+      enabled: true
+      amqp:
+        enabled: true

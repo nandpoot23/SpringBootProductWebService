@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4ce8550c-353d-4b20-8d0f-89ce54e12475" activeEnvironment="Default" name="SpringBootProductSoapWebService10.01" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="a92c03ec-fdbc-43ea-af9a-5b4157c44e17" wsaVersion="NONE" name="ProductServiceImplServiceSoapBinding" type="wsdl" bindingName="{http://service.product.soap.biscuit.com/}ProductServiceImplServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8090/ProductService/10.01.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8090/ProductService/10.01.wsdl"><con:part><con:url>http://localhost:8090/ProductService/10.01.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="ProductServiceImplService" targetNamespace="http://service.product.soap.biscuit.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.product.soap.biscuit.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.product.soap.biscuit.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getAllProductValuation" type="tns:getAllProductValuation"/>
+      <xs:element name="getAllProductValuationResponse" type="tns:getAllProductValuationResponse"/>
+      <xs:element name="getProductDetailByProId" type="tns:getProductDetailByProId"/>
+      <xs:element name="getProductDetailByProIdResponse" type="tns:getProductDetailByProIdResponse"/>
+      <xs:complexType name="getAllProductValuation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:productValue"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productValue">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="proValuation" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAllProductValuationResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:productValuationDetails"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productValuationDetails">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="marketValue" type="xs:string"/>
+          <xs:element minOccurs="0" name="productName" type="xs:string"/>
+          <xs:element minOccurs="0" name="productValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="serviceFault">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="messages" type="tns:messagesType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="messagesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="message" nillable="true" type="tns:messageType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="messageType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="code" type="xs:string"/>
+          <xs:element minOccurs="0" name="text" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProductDetailByProId">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:productIdentity"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productIdentity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="productId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getProductDetailByProIdResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:productDetails"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="productDetails">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="marketValue" type="xs:string"/>
+          <xs:element minOccurs="0" name="productName" type="xs:string"/>
+          <xs:element minOccurs="0" name="productType" type="xs:string"/>
+          <xs:element minOccurs="0" name="productValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="serviceFault" nillable="true" type="tns:serviceFault"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getProductDetailByProIdResponse">
+    <wsdl:part element="tns:getProductDetailByProIdResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllProductValuation">
+    <wsdl:part element="tns:getAllProductValuation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllProductValuationResponse">
+    <wsdl:part element="tns:getAllProductValuationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ProductServiceFault">
+    <wsdl:part element="tns:serviceFault" name="ProductServiceFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProductDetailByProId">
+    <wsdl:part element="tns:getProductDetailByProId" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProductService">
+    <wsdl:operation name="getAllProductValuation">
+      <wsdl:input message="tns:getAllProductValuation" name="getAllProductValuation"></wsdl:input>
+      <wsdl:output message="tns:getAllProductValuationResponse" name="getAllProductValuationResponse"></wsdl:output>
+      <wsdl:fault message="tns:ProductServiceFault" name="ProductServiceFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProductDetailByProId">
+      <wsdl:input message="tns:getProductDetailByProId" name="getProductDetailByProId"></wsdl:input>
+      <wsdl:output message="tns:getProductDetailByProIdResponse" name="getProductDetailByProIdResponse"></wsdl:output>
+      <wsdl:fault message="tns:ProductServiceFault" name="ProductServiceFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductServiceImplServiceSoapBinding" type="tns:ProductService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAllProductValuation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAllProductValuation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllProductValuationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProductServiceFault">
+        <soap:fault name="ProductServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProductDetailByProId">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getProductDetailByProId">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductDetailByProIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ProductServiceFault">
+        <soap:fault name="ProductServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductServiceImplService">
+    <wsdl:port binding="tns:ProductServiceImplServiceSoapBinding" name="ProductServiceImplPort">
+      <soap:address location="http://localhost:8090/ProductService/10.01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8090/ProductService/10.01</con:endpoint></con:endpoints><con:operation id="74e61f19-04f0-4f2a-8c1f-8699ca7e222f" isOneWay="false" action="" name="getAllProductValuation" bindingOperationName="getAllProductValuation" type="Request-Response" outputName="getAllProductValuationResponse" inputName="getAllProductValuation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="efe3c943-7b61-402b-a27a-e814d756cf4a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ProductService/10.01</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.product.soap.biscuit.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getAllProductValuation>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <proValuation>1</proValuation>\r
+         </arg0>\r
+      </ser:getAllProductValuation>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.product.soap.biscuit.com/ProductService/getAllProductValuation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="935afeb1-911c-49b8-8c41-bf09b7d2a9e1" isOneWay="false" action="" name="getProductDetailByProId" bindingOperationName="getProductDetailByProId" type="Request-Response" outputName="getProductDetailByProIdResponse" inputName="getProductDetailByProId" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0c1901be-e7e0-4700-b7dc-720fd2054e98" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/ProductService/10.01</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.product.soap.biscuit.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ser:getProductDetailByProId>\r
+         <!--Optional:-->\r
+         <arg0>\r
+            <!--Optional:-->\r
+            <productId>1</productId>\r
+         </arg0>\r
+      </ser:getProductDetailByProId>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://service.product.soap.biscuit.com/ProductService/getProductDetailByProId"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

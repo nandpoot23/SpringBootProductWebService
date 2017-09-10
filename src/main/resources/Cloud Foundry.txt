@@ -1,0 +1,10 @@
+**************************************************************************************************************************
+
+Service broker in cloud foundry:-
+
+https://docs.cloudfoundry.org/services/overview.html
+https://spring.io/blog/2016/06/07/introducing-spring-cloud-cloud-foundry-service-broker
+http://www.starkandwayne.com/blog/register-your-own-service-broker-with-any-cloud-foundry/
+http://www.managingsoftwaredebt.com/2014/12/31/service-brokers-in-cloud-foundry/
+
+**************************************************************************************************************************

@@ -1,0 +1,461 @@
+**************************************************************************************************************************
+													Migration Steps
+**************************************************************************************************************************
+
+Phase 1:-
+
+create one spring starter project including gradle & web services jar primarily.
+enable dependency management.
+delete the test folder classes.
+now rename the src folder package & structure this according to legacy.
+enter the necessary jar files to the build.gradle file.
+enter the sonar configuration.
+enter the integration test configuration.
+enter the spring boot main configuration file.
+enter the swagger configuration.
+enter aop configuration.
+enter actuator configuration.
+after updating build.gradle, refresh all dependencies.
+now run the application to check whether it is running fine or not.
+
+see log:-
+---------------------------------------------------------------------------------------------------------
+2017-02-25 10:53:46.958  WARN 4132 --- [           main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Tomcat.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.tomcat.jdbc.pool.DataSource]: Factory method 'dataSource' threw exception; nested exception is org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Cannot determine embedded database driver class for database type NONE. If you want an embedded database please put a supported one on the classpath. If you have database settings to be loaded from a particular profile you may need to active it (no profiles are currently active).
+2017-02-25 10:53:46.959  INFO 4132 --- [           main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2017-02-25 10:53:46.959 ERROR 4132 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Cannot determine embedded database driver class for database type NONE
+
+Action:
+
+If you want an embedded database please put a supported one on the classpath. If you have database settings to be loaded from a particular profile you may need to active it (no profiles are currently active).
+
+**************************************************************************************************************************
+
+Phase 2:-
+
+now we need to create data source for our application.
+so, we will create properties configuration file.
+now create the db configuration inside this, entry the connection details to application.properties file.
+
+what others are needed to enter inside the application.properties file.
+
+inside the src/main/resources create one package named as bundles.
+inside this create the Messages.properties file.
+inside this file put all the error code with messages.
+note :- here we can enter by two types ie. 
+we can use = or : both
+PRODUCT-31554=Validation Error: Product Id is not valid.
+PRODUCT-31557 : Validation Error: Please give the valid number.
+now create one enum class for corresponding error codes entered inside the Messages.properties file.
+now in the main method file :-
+autowire the ResourceBundleMessageSource
+we can put the start & end in print statement to see the details of main method execution.
+since our config class in different package to need to put the component scan.
+now create the folder for the wsdl generated files & copy those files inside this, and
+make available for component scan.
+now try to build your application( run as --> gradle build --> clean build --> apply -->ok.
+now run the application to check whether it is running fine or not.
+right click on the project --> Run As --> Spring Boot App
+
+see log:-
+---------------------------------------------------------------------------------------------------------
+
+Start
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.2.RELEASE)
+
+2017-02-25 12:11:00.567  INFO 8824 --- [           main] a.SpringBootProductWebServiceApplication : Starting SpringBootProductWebServiceApplication on xen-516 with PID 8824 (D:\project\development\SpringBootProductWebService\bin started by mlahariya in D:\project\development\SpringBootProductWebService)
+2017-02-25 12:11:00.567  INFO 8824 --- [           main] a.SpringBootProductWebServiceApplication : No active profile set, falling back to default profiles: default
+2017-02-25 12:11:00.662  INFO 8824 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7219ec67: startup date [Sat Feb 25 12:11:00 IST 2017]; root of context hierarchy
+2017-02-25 12:11:02.177  INFO 8824 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-25 12:11:02.272  INFO 8824 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-25 12:11:02.350  INFO 8824 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [class org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$8e7ec240] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-25 12:11:02.396  INFO 8824 --- [           main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2017-02-25 12:11:02.443  INFO 8824 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e9e6fd41] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-02-25 12:11:02.786  INFO 8824 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-02-25 12:11:02.802  INFO 8824 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-02-25 12:11:02.802  INFO 8824 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-02-25 12:11:02.958  INFO 8824 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-02-25 12:11:02.958  INFO 8824 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2297 ms
+2017-02-25 12:11:03.254  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-02-25 12:11:03.254  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'messageDispatcherServlet' to [/services/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'metricsFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webRequestLoggingFilter' to: [/*]
+2017-02-25 12:11:03.270  INFO 8824 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'applicationContextIdFilter' to: [/*]
+2017-02-25 12:11:03.599  INFO 8824 --- [           main] c.b.p.s.r.c.PropertiesConfiguration      : 
+
+
+
+ jdbcTeamplateProduct BEAN org.apache.tomcat.jdbc.pool.DataSource@12aa4996{ConnectionPool[defaultAutoCommit=null; defaultReadOnly=null; defaultTransactionIsolation=-1; defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; testWhileIdle=false; testOnConnect=false; password=********; url=jdbc:mysql://localhost:3306/springboot; username=root; validationQuery=null; validationQueryTimeout=-1; validatorClassName=null; validationInterval=3000; accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; logAbandoned=false; connectionProperties=null; initSQL=null; jdbcInterceptors=null; jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; ignoreExceptionOnPreLoad=false; } 
+
+
+
+2017-02-25 12:11:03.957  INFO 8824 --- [           main] c.b.p.s.r.c.PropertiesConfiguration      : ProductDatabaseConnector Database sucessfully connected. 
+2017-02-25 12:11:04.301  INFO 8824 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@7219ec67: startup date [Sat Feb 25 12:11:00 IST 2017]; root of context hierarchy
+2017-02-25 12:11:04.380  INFO 8824 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-02-25 12:11:04.380  INFO 8824 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-02-25 12:11:04.426  INFO 8824 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-25 12:11:04.426  INFO 8824 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-25 12:11:04.489  INFO 8824 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-02-25 12:11:05.097  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.097  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/info || /info.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.097  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/auditevents || /auditevents.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public org.springframework.http.ResponseEntity<?> org.springframework.boot.actuate.endpoint.mvc.AuditEventsMvcEndpoint.findByPrincipalAndAfterAndType(java.lang.String,java.util.Date,java.lang.String)
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.get(java.lang.String)
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers/{name:.*}],methods=[POST],consumes=[application/vnd.spring-boot.actuator.v1+json || application/json],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.LoggersMvcEndpoint.set(java.lang.String,java.util.Map<java.lang.String, java.lang.String>)
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/loggers || /loggers.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/env || /env.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+2017-02-25 12:11:05.113  INFO 8824 --- [           main] o.s.b.a.e.mvc.EndpointHandlerMapping     : Mapped "{[/health || /health.json],methods=[GET],produces=[application/vnd.spring-boot.actuator.v1+json || application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(javax.servlet.http.HttpServletRequest)
+2017-02-25 12:11:05.425  INFO 8824 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-02-25 12:11:05.425  INFO 8824 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2017-02-25 12:11:05.566  INFO 8824 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-02-25 12:11:05.582  INFO 8824 --- [           main] a.SpringBootProductWebServiceApplication : Started SpringBootProductWebServiceApplication in 5.358 seconds (JVM running for 5.98)
+End
+
+---------------------------------------------------------------------------------------------------------
+
+important points to notice in the log:-
+
+starting executing
+deafult spring boot banner along with version used in
+
+Starting SpringBootProductWebServiceApplication on xen-516 with PID 8824 
+(D:\project\development\SpringBootProductWebService\bin started by mlahariya in 
+D:\project\development\SpringBootProductWebService)
+
+Tomcat initialized with port(s): 8080 (http)
+Starting service Tomcat
+Starting Servlet Engine: Apache Tomcat/8.5.11
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 2297 ms
+Mapping servlet: 'dispatcherServlet' to [/]
+Mapping filter: 'metricsFilter' to: [/*]
+
+jdbcTeamplateProduct BEAN org.apache.tomcat.jdbc.pool.DataSource@12aa4996{ConnectionPool
+[defaultAutoCommit=null; defaultReadOnly=null; defaultTransactionIsolation=-1; 
+defaultCatalog=null; driverClassName=com.mysql.jdbc.Driver; maxActive=100; maxIdle=100; 
+minIdle=10; initialSize=10; maxWait=30000; testOnBorrow=false; testOnReturn=false; 
+timeBetweenEvictionRunsMillis=5000; numTestsPerEvictionRun=0; minEvictableIdleTimeMillis=60000; 
+testWhileIdle=false; testOnConnect=false; password=********; 
+url=jdbc:mysql://localhost:3306/springboot; username=root; validationQuery=null; 
+validationQueryTimeout=-1; validatorClassName=null; validationInterval=3000;
+ accessToUnderlyingConnectionAllowed=true; removeAbandoned=false; removeAbandonedTimeout=60; 
+ logAbandoned=false; connectionProperties=null; initSQL=null; jdbcInterceptors=null; 
+ jmxEnabled=true; fairQueue=true; useEquals=true; abandonWhenPercentageFull=0; maxAge=0; 
+ useLock=false; dataSource=null; dataSourceJNDI=null; suspectTimeout=0; 
+ alternateUsernameAllowed=false; commitOnReturn=false; rollbackOnReturn=false; 
+ useDisposableConnectionFacade=true; logValidationErrors=false; propagateInterruptState=false; 
+ ignoreExceptionOnPreLoad=false; } 
+
+ProductDatabaseConnector Database sucessfully connected. 
+BiscuitDatabaseConnector Database sucessfully connected. 
+Starting beans in phase 0
+Tomcat started on port(s): 8080 (http)
+Started SpringBootProductWebServiceApplication in 5.358 seconds (JVM running for 5.98)
+ending executing
+
+Note :- here we are creating two different database connector for the same database.
+
+**************************************************************************************************************************
+
+Phase 3:-
+
+now inside the src/main/resources create one package named as wsdl.
+copy all your existing wsdl from legacy to new.
+change the name of the wsdl file if needed.
+
+old:-
+ProductService_1001.wsdl
+ProductService_1102.wsdl
+ProductService_1203.wsdl
+ProductService_1304.wsdl
+ProductService_1405.wsdl
+
+new:-
+ProductService_10.01.wsdl
+ProductService_11.02.wsdl
+ProductService_12.03.wsdl
+ProductService_13.04.wsdl
+ProductService_14.05.wsdl
+
+<soap:address location="http://localhost:8080/ProductService/Product/10.01"/>
+<soap:address location="http://localhost:8080/ProductService/Product/11.02"/>
+<soap:address location="http://localhost:8080/ProductService/Product/12.03"/>
+<soap:address location="http://localhost:8080/ProductService/Product/13.04"/>
+<soap:address location="http://localhost:8080/ProductService/Product/14.05"/>
+
+now inside main method file :-
+
+put @Configuration & @EnableWs annotation for soap web service support.
+now extends you main class to WsConfigurerAdapter
+now create a method messageDispatcherServlet() which returns ServletRegistrationBean.
+now create different beans for various wsdl versions :- (under this)
+create multiple method definition1001() which returns SimpleWsdl11Definition of multiple versions.
+change the application.properites for default port to server starts on.
+now build your app & run as spring boot app.
+now check the published wsdl as below:-
+
+http://localhost:8090/ProductService/10.01.wsdl
+http://localhost:8090/ProductService/11.02.wsdl
+http://localhost:8090/ProductService/12.03.wsdl
+http://localhost:8090/ProductService/13.04.wsdl
+http://localhost:8090/ProductService/14.05.wsdl
+
+now check the end points as below:-
+
+we can check by seeing the published wsdl else take the published wsdl url to soap ui.
+
+http://localhost:8090/ProductService/Product/10.01
+http://localhost:8090/ProductService/Product/11.02
+http://localhost:8090/ProductService/Product/12.03
+http://localhost:8090/ProductService/Product/13.04
+http://localhost:8090/ProductService/Product/14.05
+
+how it is creating wsdl url ?
+
+it is taking the server url first on which port server starts on.
+then in the ServletRegistrationBean method it is taking the name as below.
+return new ServletRegistrationBean(servlet, "/ProductService/*");
+after that it is taking the bean name from @Bean(name = "10.01") 
+
+now generate the multiple version of wsdl to java classes in different packages.
+
+default :- com.biscuit.soap.product.service
+changed to corresponding bean name :- 
+com.biscuit.soap.product.service.v1001
+com.biscuit.soap.product.service.v1102
+com.biscuit.soap.product.service.v1203
+com.biscuit.soap.product.service.v1304
+com.biscuit.soap.product.service.v1405
+
+cmd:-
+
+we can use the old wsdl to generate the artifacts as below.
+
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+D:\sandbox\ProductClient\src>wsimport -keep http://localhost:8080/ProductService/services/ProductService/10.01?wsdl
+
+parsing WSDL...
+Generating code...
+Compiling code...
+
+D:\sandbox\p2\src>wsimport -keep http://localhost:8080/ProductService/services/ProductService/11.02?wsdl
+
+parsing WSDL...
+Generating code...
+Compiling code...
+
+D:\sandbox\ProductClient\src>wsimport -keep http://localhost:8080/ProductService/services/ProductService/12.03?wsdl
+
+parsing WSDL...
+Generating code...
+Compiling code...
+
+D:\sandbox\ProductClient\src>wsimport -keep http://localhost:8080/ProductService/services/ProductService/13.04?wsdl
+
+parsing WSDL...
+Generating code...
+Compiling code...
+
+D:\sandbox\ProductClient\src>wsimport -keep http://localhost:8080/ProductService/services/ProductService/14.05?wsdl
+
+parsing WSDL...
+Generating code...
+Compiling code...
+
+D:\sandbox\ProductClient\src>
+
+or we can use the published wsdl in spring boot environment to generate the artifacts as below.
+
+D:\project\development\p1\src>wsimport -keep http://localhost:8090/ProductService/10.01.wsdl
+D:\project\development\p1\src>wsimport -keep http://localhost:8090/ProductService/11.02.wsdl
+D:\project\development\p1\src>wsimport -keep http://localhost:8090/ProductService/12.03.wsdl
+D:\project\development\p1\src>wsimport -keep http://localhost:8090/ProductService/13.04.wsdl
+D:\project\development\p1\src>wsimport -keep http://localhost:8090/ProductService/14.05.wsdl
+parsing WSDL...
+Generating code...
+Compiling code...
+D:\project\development\p1\src>
+
+copy all these artifacts to your spring boot app to corresponding folders.
+delete the p1 side project.
+now clean the app, build your app & run again as spring boot app,
+to ensure that till now every thing is running fine or not.
+
+There is one important thing is that we need to mention the below annotation to the generated artifacts,
+to avoid endpoint not found error.
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "empAddress")
+public class EmpAddress {
+}
+
+java - How to write an external binding file for xjc?
+binding.xjb
+---------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0"
+  xmlns:xjc= "http://java.sun.com/xml/ns/jaxb/xjc" jaxb:extensionBindingPrefixes="xjc" xmlns:WL5G3N1="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+   <jaxb:globalBindings generateElementProperty="false">
+     <xjc:simple />
+  </jaxb:globalBindings>
+
+ <jaxb:bindings schemaLocation="service.wsdl">
+    <jaxb:bindings node="/WL5G3N1:definitions/WL5G3N1:types/xsd:schema[@targetNamespace='http://xml.comcast.com/inventory/services']" >
+        <jaxb:schemaBindings>
+             <jaxb:package name="com.comcast.xml.inventory.services.v1410"/>
+          </jaxb:schemaBindings>
+     </jaxb:bindings>
+   <jaxb:bindings node="/WL5G3N1:definitions/WL5G3N1:types/xsd:schema[@targetNamespace='http://xml.comcast.com/inventory/types']" >
+        <jaxb:schemaBindings>
+            <jaxb:package name="com.comcast.xml.inventory.types.v1410"/>
+        </jaxb:schemaBindings>
+     </jaxb:bindings>
+     
+       <jaxb:bindings node="/WL5G3N1:definitions/WL5G3N1:types/xsd:schema[@targetNamespace='http://xml.comcast.com/common/types']" >
+                  <jaxb:schemaBindings>
+                      <jaxb:package name="com.comcast.xml.common.types.v1410"/>
+                  </jaxb:schemaBindings>
+     </jaxb:bindings>
+  <jaxb:bindings node="/WL5G3N1:definitions/WL5G3N1:types/xsd:schema[@targetNamespace='http://xml.comcast.com/types']" >
+        <jaxb:schemaBindings>
+            <jaxb:package name="com.comcast.xml.types"/>
+        </jaxb:schemaBindings>
+     </jaxb:bindings>
+
+ </jaxb:bindings>
+
+</jaxb:bindings>
+
+**************************************************************************************************************************
+
+Phase 4:-
+
+first of all copy all types folder classes to new project to avoid compilation fails 
+in service interface & their subsidiary classes.
+changed the package name for the types folder classes according to new project to avoid compilation fails.
+now create the service interface & impl class (same name as in legacy).
+in the service interface remove the exception class from each methods if present.
+after that create the handler class for each opearation.
+after that create the dao & impl class.
+now we will create one common rest controller for all the service methods.
+
+**************************************************************************************************************************
+
+Phase 5:-
+
+we will implement the swagger for rest api.
+
+enter the swagger dependencies into build.gradle
+enter the @EnableSwagger2 in spring boot main class
+
+**************************************************************************************************************************
+
+Phase 6:-
+
+we will deal with rest exception & test.
+
+**************************************************************************************************************************
+
+Phase 7:-
+
+in this we will create soap controllers for the different service version.
+
+specify @Endpoint
+specify NAMESPACE_URI = "http://service.product.soap.biscuit.com/" this is the tns in your wsdl.
+specify 
+
+@PayloadRoot(namespace = NAMESPACE_URI, localPart = "/10.01/getProductDetailByProId")
+@ResponsePayload
+@RequestPayload (it takes the input class name)
+
+default version is 14.05,
+@PayloadRoot(namespace = NAMESPACE_URI, localPart = "/getProductDetailByProId")
+
+**************************************************************************************************************************
+
+Phase 8:-
+
+we will deal with soap exception & test.
+
+**************************************************************************************************************************
+
+Phase 9:-
+
+we will implement the aop for service method validation.
+
+**************************************************************************************************************************
+
+Phase 10:-
+
+we will implement the logging for the entire app.
+
+**************************************************************************************************************************
+
+Phase 11:-
+
+we will create the soap ui test suite for rest api & soap services 
+for all positive & negative cases.
+
+**************************************************************************************************************************
+
+Phase 12:-
+
+we will create the integration test for rest api & soap services for all positive.
+
+**************************************************************************************************************************
+
+Phase 13:-
+
+we will create the contract test, functional test, e2e test for soap services for all positive.
+after that we have to write the scala performance test.
+
+**************************************************************************************************************************
+
+Phase 14:-
+
+we will create the Junit with Mockito for the entire app.
+code coverage on sonar as 80%. 
+remove duplicate from the app.
+mutation test for all branch.
+sonar violation fixes (major/minor/info/technical debt)
+
+**************************************************************************************************************************
+
+Phase 15:-
+
+documentation of the migrated app.
+
+**************************************************************************************************************************

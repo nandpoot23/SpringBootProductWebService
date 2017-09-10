@@ -1,0 +1,121 @@
+**************************************************************************************************************************
+
+World Class:-
+
+SpringBoot Framework
+Maven/Gradle
+Micro Services
+Core Java (logical programs, algorithms, data structure, threading, concurrency)
+Spring JDBC Template
+Database (Oracle/MySql)
+Unix
+Web Services (Soap/Rest)
+Cloud Computing
+
+**************************************************************************************************************************
+
+Soap:-
+
+Soap Web Service (JAX-WS, Apache Axis/CXF, SpringWS)
+Soap Approach (Top Down/Bottom Up)
+Soap Protocol
+Soap Building Blocks
+Soap Configuration (cxf-beans.xml)
+Multiple version support in WSDL
+WSDL components (Types, Operations, Binding, Service)
+Soap Namespace, Taget Namespace
+Soap Endpoint 
+Service Endpoint Interface
+Payload (Root, RequestPayload, ResponsePayload)
+Soap Enevelop
+Soap XML request/response header
+Soap Proxy Object
+Stub & Skelton
+WSDL to Java
+Java to WSDL
+Tools (wsgen, wsimport)
+Soap Binding (JAXB)
+Spring Soap Controller
+Soap Fault
+Soap Exception Handling
+Soap Incomming Request Validation
+AOP Aspect in Validation
+Bean Mapping (Manually/MapStruct)
+Obfuscation
+SLF 4j Logging
+Interceptors
+Soap Security
+Caching
+Config Server
+Messaging
+Executor framework
+Pivotal Cloud Foundry (PAAS)
+Sonar (Code coverage, Technial Debt)
+Eclemma
+Repository (GitHub)
+External Soap ws call (consume)
+Moco Server Implementation (to mock external service call)
+Soap Adapter Implementation (for the RESTful ws which supports SOAP web services as well)
+
+**************************************************************************************************************************
+
+Rest:-
+
+Rest Web Service (JAX-RS)
+Spring Rest Controller
+Base Rest API Controller
+Swagger API
+Java Script Object Notation
+Lazy Initialization
+RequestMapping
+RequestBody
+ResponseStatus
+ResponseEntity
+Rest Exception Handling 
+External Rest ws call (consume)
+Soap Ui (soap/rest)
+
+**************************************************************************************************************************
+
+Testing Era:-
+
+Unit Test (Junit, Mockito)
+Pi/Mutation Test
+Contract Test (Soap ws, consuming actual SOAP req for business contract validations)
+Functional Test (Soap ws, consuming actual SOAP req for business function validations)
+E2E Test (Soap ws)
+Performance Test (Scala based)
+Integration Test (Soap ws, Rest ws)
+Soap Ui Test Suite (Soap ws, Rest ws)
+
+**************************************************************************************************************************
+
+Uses:-
+
+Best in use (Soap/Rest)
+Why to use (Soap/Rest)
+Where to use (Soap/Rest)
+Comparison (Soap/Rest)
+Drawbacks of (Soap/Rest) 
+
+**************************************************************************************************************************
+
+Continuous Integration:-
+
+GoCD
+
+**************************************************************************************************************************
+
+Documentation:-
+
+1. Summary of Work (SOW)
+2. System Requirement Specification (SRS)
+3. Business Requirement Document (BRD)
+4. Use Case Diagram (UCD)
+5. High Level Design (HLD)
+6. Low Level Design (LLD - Sequence Diagram)
+7. Technical Design Document (TDD - Web Service Flow)
+8. Web Services Description Document (SDD)
+9. Deployment Document
+
+**************************************************************************************************************************

@@ -1,0 +1,45 @@
+**************************************************************************************************************************
+
+How to throw an exception in rest web service:-
+
+https://dzone.com/articles/exception-handling-spring-rest
+http://www.jcombat.com/spring/exception-handling-in-spring-restful-web-service
+https://dennis-xlc.gitbooks.io/restful-java-with-jax-rs-2-0-2rd-edition/en/part1/chapter7/exception_handling.html
+http://howtodoinjava.com/jersey/jax-rs-jersey-custom-exceptions-handling-with-exceptionmapper/
+
+**************************************************************************************************************************
+
+How to throw an exception in rest web service using spring boot:-
+
+http://www.ekiras.com/2016/02/how-to-do-exception-handling-in-springboot-rest-application.html
+http://stackoverflow.com/questions/16160293/how-to-throw-exceptions-in-rest-controllers
+http://stackoverflow.com/questions/30251431/throwing-exceptions-from-spring-rest-webservice-as-json-xml
+http://www.baeldung.com/exception-handling-for-rest-with-spring
+
+http://stackoverflow.com/questions/28902374/spring-boot-rest-service-exception-handling
+https://blog.jayway.com/2014/10/19/spring-boot-error-responses/
+https://www.javacodegeeks.com/2016/01/exception-handling-spring-restful-web-service.html
+https://praveer09.github.io/technology/2016/07/08/rest-error-responses-in-spring-boot/
+http://fruzenshtein.com/spring-rest-exception-handling-2/
+
+**************************************************************************************************************************
+
+Sample:-
+
+{
+   "message": "Validation Error : Product Id is not valid.",
+   "code": "PRODUCT-31554",
+   "timestamp": 1489146717779,
+   "type": "com.biscuit.product.service.rest.exception.ProductErrorResponse",
+   "status": "INTERNAL_SERVER_ERROR"
+}
+
+{
+   "message": "System Error : Product not exist.",
+   "code": "PRODUCT-31556",
+   "timestamp": 1489147083041,
+   "type": "com.biscuit.product.service.rest.exception.ProductErrorResponse",
+   "status": "INTERNAL_SERVER_ERROR"
+}
+
+**************************************************************************************************************************
